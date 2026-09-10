@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isumi Kalpage — UI/UX Design &amp; Frontend Development</title>
+<meta name="description" content="Portfolio of Isumi Kalpage, a Software Engineering undergraduate focused on UI/UX design and front-end development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F6F2;
+    --bg-alt: #EFECE4;
+    --ink: #16181D;
+    --ink-soft: #5A5E67;
+    --ink-faint: #8A8D93;
+    --line: #DBD6CB;
+    --accent: #3D5A80;
+    --accent-deep: #223549;
+    --accent-tint: #DCE6EE;
+    --sand-tint: #EFE2C9;
+    --sand-deep: #8B6B3D;
+    --sage-tint: #DAE4D2;
+    --sage-deep: #4B6047;
+    --radius: 14px;
+    --radius-sm: 6px;
+    --maxw: 1160px;
+    --shadow: 0 18px 40px -22px rgba(22,24,29,.28);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter', sans-serif;font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces', serif;font-weight:500;margin:0;color:var(--ink);}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  ul{margin:0;padding:0;list-style:none;}
+  section{padding:120px 0;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  button{font-family:inherit;}
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  .reveal-stagger .reveal:nth-child(2){transition-delay:.08s;}
+  .reveal-stagger .reveal:nth-child(3){transition-delay:.16s;}
+  .reveal-stagger .reveal:nth-child(4){transition-delay:.24s;}
+  .reveal-stagger .reveal:nth-child(5){transition-delay:.32s;}
+  .reveal-stagger .reveal:nth-child(6){transition-delay:.4s;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 0;
+    transition:background .35s ease, padding .35s ease, border-color .35s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(247,246,242,.9);backdrop-filter:blur(10px);
+    padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:20px;font-weight:500;}
+  .nav-links{display:flex;align-items:center;gap:34px;}
+  .nav-links a{font-size:14.5px;color:var(--ink-soft);transition:color .2s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    font-size:14px;font-weight:500;color:var(--ink);
+    border:1px solid var(--ink);border-radius:999px;padding:9px 20px;
+    transition:background .2s ease,color .2s ease;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--bg);}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
+
+  @media (max-width:820px){
+    .nav-links{
+      position:fixed;top:64px;left:0;right:0;background:var(--bg);
+      border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;
+      padding:8px 40px 20px;transform:translateY(-8px);opacity:0;pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+    }
+    .nav-links.open{opacity:1;transform:translateY(0);pointer-events:auto;}
+    .nav-links a{width:100%;padding:12px 0;border-bottom:1px solid var(--line);}
+    .nav-links .nav-cta{border:none;padding:12px 0;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:180px 0 60px;position:relative;overflow:hidden;}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  .hero-eyebrow{font-size:15px;color:var(--accent);font-weight:500;margin-bottom:18px;}
+  .hero h1{font-size:clamp(40px,5.4vw,60px);line-height:1.07;letter-spacing:-.5px;}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--accent-deep);}
+  .hero-desc{font-size:16.5px;color:var(--ink-soft);margin-top:22px;max-width:46ch;}
+  .hero-actions{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+  .btn{
+    font-size:15px;font-weight:500;padding:13px 26px;border-radius:999px;cursor:pointer;
+    transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;
+    display:inline-block;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+  .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-1px);}
+
+  .hero-art-wrap{position:relative;}
+  .hero-art{
+    background:linear-gradient(155deg,var(--accent-tint),var(--sand-tint));
+    border-radius:var(--radius);padding:34px;position:relative;
+  }
+  .hero-art svg{width:100%;height:auto;}
+  .hero-art .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.5s ease;}
+  .hero-art.in-view .draw{stroke-dashoffset:0;}
+
+  .float-card{
+    position:absolute;background:var(--bg);border:1px solid var(--line);
+    border-radius:var(--radius-sm);padding:14px 18px;box-shadow:var(--shadow);
+    opacity:0;transform:translateY(14px);transition:opacity .6s ease .5s, transform .6s ease .5s;
+  }
+  .float-card.in-view{opacity:1;transform:translateY(0);}
+  .float-card .fc-num{font-family:'Fraunces',serif;font-size:22px;color:var(--accent-deep);}
+  .float-card .fc-label{font-size:12px;color:var(--ink-faint);margin-top:2px;}
+  .fc-1{left:-28px;bottom:-22px;}
+  .fc-2{right:-18px;top:26px;}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero{padding:150px 0 40px;}
+    .hero-art-wrap{order:-1;max-width:340px;margin:0 auto 30px;}
+    .fc-1{left:6px;bottom:-18px;}
+    .fc-2{right:6px;top:-16px;}
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee-section{padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;}
+  .marquee-track{display:flex;width:max-content;animation:scroll-x 26s linear infinite;}
+  .marquee-section:hover .marquee-track{animation-play-state:paused;}
+  .marquee-track span{
+    font-family:'Fraunces',serif;font-size:22px;color:var(--ink-faint);
+    padding:0 34px;white-space:nowrap;display:flex;align-items:center;gap:34px;
+  }
+  .marquee-track span::after{content:"—";color:var(--line);}
+  @keyframes scroll-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{max-width:580px;margin-bottom:56px;}
+  .section-head .kicker{font-size:14px;color:var(--accent);font-weight:500;margin-bottom:10px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.3px;}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:16px;max-width:50ch;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--bg-alt);}
+  .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
+  .about-copy p{font-size:18px;line-height:1.75;color:var(--ink);max-width:52ch;}
+  .about-copy p + p{margin-top:18px;}
+  .fact-strip{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
+  .fact{display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);gap:20px;}
+  .fact-label{font-size:14px;color:var(--ink-faint);flex-shrink:0;}
+  .fact-value{font-size:15px;text-align:right;color:var(--ink);}
+  @media (max-width:800px){.about .wrap{grid-template-columns:1fr;gap:40px;}}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .skill-group h3{font-size:15px;font-weight:600;font-family:'Inter',sans-serif;color:var(--ink-soft);margin-bottom:16px;}
+  .pill-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{font-size:14px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);color:var(--ink);background:var(--bg);}
+  @media (max-width:800px){.skills-grid{grid-template-columns:1fr;gap:32px;}}
+
+  /* ---------- WORK CARDS ---------- */
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  .case-card{
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    background:var(--bg);transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    display:flex;flex-direction:column;
+  }
+  .case-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent;}
+  .case-thumb{
+    aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+  }
+  .case-thumb svg{width:38%;height:38%;transition:transform .5s ease;}
+  .case-card:hover .case-thumb svg{transform:scale(1.08);}
+  .thumb-blue{background:linear-gradient(160deg,var(--accent-tint),#EAF0F5);}
+  .thumb-sand{background:linear-gradient(160deg,var(--sand-tint),#F6EFDD);}
+  .thumb-sage{background:linear-gradient(160deg,var(--sage-tint),#EDF2E8);}
+  .case-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1;}
+  .case-eyebrow{font-size:13px;color:var(--ink-faint);margin-bottom:8px;}
+  .case-title{font-size:21px;letter-spacing:-.2px;}
+  .case-desc{font-size:14.5px;color:var(--ink-soft);margin-top:10px;flex:1;}
+  .case-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;}
+  .case-tag{font-size:12px;color:var(--ink-soft);border:1px solid var(--line);padding:4px 10px;border-radius:999px;}
+  .case-btn{
+    margin-top:20px;display:inline-flex;align-items:center;gap:8px;
+    font-size:14px;font-weight:500;color:var(--accent-deep);background:none;border:none;
+    cursor:pointer;padding:0;width:fit-content;
+  }
+  .case-btn svg{width:15px;height:15px;transition:transform .2s ease;}
+  .case-btn:hover svg{transform:translateX(3px);}
+
+  @media (max-width:800px){.work-grid{grid-template-columns:1fr;}}
+
+  /* ---------- PROCESS ---------- */
+  .process{background:var(--bg-alt);}
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+  .process-step{padding-top:20px;border-top:1px solid var(--ink);}
+  .process-num{font-family:'Fraunces',serif;font-size:15px;color:var(--accent);margin-bottom:14px;}
+  .process-title{font-size:19px;}
+  .process-desc{font-size:14.5px;color:var(--ink-soft);margin-top:10px;}
+  @media (max-width:900px){.process-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.process-grid{grid-template-columns:1fr;}}
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{border-top:1px solid var(--line);margin-top:8px;}
+  .t-item{display:grid;grid-template-columns:140px 1fr;gap:30px;padding:34px 0;border-bottom:1px solid var(--line);}
+  .t-date{font-size:14.5px;color:var(--ink-faint);padding-top:3px;}
+  .t-title{font-size:19px;font-family:'Fraunces',serif;font-weight:500;}
+  .t-org{font-size:14.5px;color:var(--accent);margin-top:4px;}
+  .t-desc{font-size:15.5px;color:var(--ink-soft);margin-top:10px;max-width:60ch;}
+  @media (max-width:640px){.t-item{grid-template-columns:1fr;gap:8px;}}
+
+  /* ---------- MENTOR / STATUS CARDS ---------- */
+  .status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .status-card{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:var(--bg-alt);}
+  .status-card .quote-mark{font-family:'Fraunces',serif;font-size:40px;color:var(--accent);line-height:1;margin-bottom:6px;}
+  .status-card p.body{font-size:15px;color:var(--ink-soft);}
+  .status-card .who{margin-top:18px;font-size:14px;color:var(--ink);font-weight:500;}
+  .status-card .who span{display:block;font-weight:400;color:var(--ink-faint);font-size:13px;margin-top:2px;}
+  @media (max-width:820px){.status-grid{grid-template-columns:1fr;}}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;cursor:pointer;
+    padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    font-size:18px;font-family:'Fraunces',serif;color:var(--ink);
+  }
+  .faq-q .plus{font-size:22px;color:var(--accent);transition:transform .3s ease;flex-shrink:0;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a p{padding-bottom:22px;font-size:15px;color:var(--ink-soft);max-width:60ch;}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--accent-deep);color:var(--bg);text-align:center;}
+  .cta h2{color:var(--bg);font-size:clamp(30px,4.6vw,48px);max-width:16ch;margin:0 auto;letter-spacing:-.4px;}
+  .cta p{color:#C7D3DD;margin-top:18px;font-size:16px;}
+  .cta .hero-actions{justify-content:center;margin-top:34px;}
+  .cta .btn-primary{background:var(--bg);color:var(--accent-deep);border-color:var(--bg);}
+  .cta .btn-ghost{border-color:#41586c;color:var(--bg);}
+  .cta .btn-ghost:hover{border-color:var(--bg);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-list{margin-top:8px;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);max-width:520px;margin-left:auto;margin-right:auto;}
+  .contact-row{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    padding:16px 0;border-bottom:1px solid var(--line);font-size:15.5px;
+    color:var(--bg);transition:gap .2s ease,opacity .2s ease;
+  }
+  a.contact-row:hover{gap:18px;opacity:.85;}
+  .contact-row svg{flex-shrink:0;width:18px;height:18px;stroke:var(--bg);}
+
+  footer{padding:36px 0;border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+  footer p{font-size:13.5px;color:var(--ink-faint);}
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(22,24,29,.55);
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:60px 20px;overflow-y:auto;z-index:1000;
+    opacity:0;pointer-events:none;transition:opacity .3s ease;
+  }
+  .modal-overlay.open{opacity:1;pointer-events:auto;}
+  .modal{
+    background:var(--bg);border-radius:var(--radius);max-width:720px;width:100%;
+    padding:0;position:relative;transform:translateY(24px);transition:transform .35s ease;
+    overflow:hidden;
+  }
+  .modal-overlay.open .modal{transform:translateY(0);}
+  .modal-hero{aspect-ratio:16/8;display:flex;align-items:center;justify-content:center;}
+  .modal-hero svg{width:26%;height:26%;}
+  .modal-close{
+    position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--line);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;z-index:2;
+  }
+  .modal-close svg{width:16px;height:16px;}
+  .modal-body{padding:34px 40px 44px;}
+  .modal-body .case-eyebrow{margin-bottom:10px;}
+  .modal-body h3{font-size:28px;letter-spacing:-.3px;}
+  .modal-meta{display:flex;flex-wrap:wrap;gap:28px;margin:24px 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .modal-meta div{min-width:120px;}
+  .modal-meta .m-label{font-size:12.5px;color:var(--ink-faint);margin-bottom:4px;}
+  .modal-meta .m-value{font-size:14.5px;color:var(--ink);}
+  .modal-body p.desc{font-size:15.5px;color:var(--ink-soft);line-height:1.75;}
+  .modal-body p.desc + p.desc{margin-top:14px;}
+  .modal-link{display:inline-block;margin-top:22px;font-size:14.5px;font-weight:500;color:var(--accent-deep);border-bottom:1px solid var(--accent-deep);}
+  body.modal-locked{overflow:hidden;}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="#top" class="wordmark">Isumi Kalpage</a>
+    <div class="nav-links" id="nav-links">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#experience">Experience</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:isumikalpage@gmail.com" class="nav-cta">Say hello</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">UI/UX Design &amp; Frontend Development</p>
+        <h1>Hi, I'm Isumi —<br>I build interfaces <em>people enjoy using.</em></h1>
+        <p class="hero-desc">A Software Engineering undergraduate who moves between Figma and code, turning rough ideas into products people can click, tap, and actually finish.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">See my work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-art-wrap">
+        <div class="hero-art" id="hero-art">
+          <svg viewBox="0 0 320 320" fill="none">
+            <rect x="20" y="30" width="280" height="180" rx="6" class="draw" stroke="#3D5A80" stroke-width="2.5"/>
+            <line x1="20" y1="66" x2="300" y2="66" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <circle cx="38" cy="48" r="4" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <circle cx="52" cy="48" r="4" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <rect x="42" y="86" width="96" height="60" rx="3" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <line x1="42" y1="164" x2="138" y2="164" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <line x1="42" y1="178" x2="110" y2="178" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <line x1="160" y1="86" x2="278" y2="86" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <line x1="160" y1="102" x2="278" y2="102" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <line x1="160" y1="118" x2="240" y2="118" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <rect x="160" y="140" width="70" height="26" rx="4" class="draw" stroke="#3D5A80" stroke-width="2"/>
+            <rect x="70" y="235" width="180" height="56" rx="10" class="draw" stroke="#3D5A80" stroke-width="2.5"/>
+            <circle cx="160" cy="263" r="10" class="draw" stroke="#3D5A80" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="float-card fc-1"><div class="fc-num">6</div><div class="fc-label">Projects shipped</div></div>
+        <div class="float-card fc-2"><div class="fc-num">3 mo.</div><div class="fc-label">UI/UX internship</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span>HTML<span></span></span><span>CSS<span></span></span><span>JavaScript<span></span></span>
+      <span>TailwindCSS<span></span></span><span>PHP<span></span></span><span>Flutter<span></span></span>
+      <span>Figma<span></span></span><span>MongoDB<span></span></span>
+      <span>HTML<span></span></span><span>CSS<span></span></span><span>JavaScript<span></span></span>
+      <span>TailwindCSS<span></span></span><span>PHP<span></span></span><span>Flutter<span></span></span>
+      <span>Figma<span></span></span><span>MongoDB<span></span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-copy reveal">
+        <h2 style="font-size:clamp(26px,3vw,34px);margin-bottom:26px;">About</h2>
+        <p>I'm a Software Engineering undergraduate at APIIT, working toward a career in UI/UX design and front-end development. I like taking a project from a rough idea to something people can actually click through — sketching flows in Figma, then building them out in code.</p>
+        <p>Most of what I know, I've learned by making things: a grocery site, a booking system, a couple of skincare apps, a hiking app — each one forcing me to pick up the next tool. I recently spent three months at Chakra Digital working on UI/UX design, which sharpened how I think about the handoff between design and build.</p>
+      </div>
+      <div class="fact-strip reveal">
+        <div class="fact"><span class="fact-label">Based in</span><span class="fact-value">Imbulgoda, Sri Lanka</span></div>
+        <div class="fact"><span class="fact-label">Studying</span><span class="fact-value">B.Eng Software Engineering, APIIT / Staffordshire</span></div>
+        <div class="fact"><span class="fact-label">Focused on</span><span class="fact-value">UI/UX design, front-end development</span></div>
+        <div class="fact"><span class="fact-label">Recently</span><span class="fact-value">UI/UX Design Intern, Chakra Digital</span></div>
+        <div class="fact"><span class="fact-label">Design tools</span><span class="fact-value">Figma, Canva</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Toolkit</p>
+        <h2>What I work with</h2>
+        <p>The languages, frameworks and tools I've picked up so far, mostly through building the projects below.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3>Languages &amp; styling</h3>
+          <div class="pill-list">
+            <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span>
+            <span class="pill">TailwindCSS</span><span class="pill">PHP</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Platforms &amp; tools</h3>
+          <div class="pill-list">
+            <span class="pill">Flutter</span><span class="pill">XAMPP</span><span class="pill">MongoDB</span>
+            <span class="pill">Figma</span><span class="pill">Canva</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Working style</h3>
+          <div class="pill-list">
+            <span class="pill">Teamwork</span><span class="pill">Communication</span>
+            <span class="pill">Eagerness to learn</span><span class="pill">Time management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Selected work</p>
+        <h2>Six projects, six lessons</h2>
+        <p>A mix of solo builds and one team project — websites, a database-backed system, and two mobile apps. Open any card for the full case study.</p>
+      </div>
+
+      <div class="work-grid reveal-stagger">
+
+        <article class="case-card reveal" data-modal="m1">
+          <div class="case-thumb thumb-blue">
+            <svg viewBox="0 0 120 120" fill="none">
+              <path d="M14 20 H26 L34 74 H92" stroke="#223549" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M34 74 L42 40 H98 L90 74 H34Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/>
+              <circle cx="46" cy="94" r="7" stroke="#223549" stroke-width="3"/>
+              <circle cx="80" cy="94" r="7" stroke="#223549" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <p class="case-eyebrow">Website · Solo</p>
+            <h3 class="case-title">Smart Buy Grocery</h3>
+            <p class="case-desc">A grocery ordering site built entirely on vanilla HTML, CSS and JavaScript — no framework, by design.</p>
+            <div class="case-tags"><span class="case-tag">HTML</span><span class="case-tag">CSS</span><span class="case-tag">JavaScript</span></div>
+            <button class="case-btn" data-open="m1">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="case-card reveal" data-modal="m2">
+          <div class="case-thumb thumb-sand">
+            <svg viewBox="0 0 120 120" fill="none">
+              <rect x="18" y="24" width="84" height="76" rx="4" stroke="#223549" stroke-width="3"/>
+              <line x1="18" y1="44" x2="102" y2="44" stroke="#223549" stroke-width="3"/>
+              <line x1="34" y1="16" x2="34" y2="32" stroke="#223549" stroke-width="3" stroke-linecap="round"/>
+              <line x1="86" y1="16" x2="86" y2="32" stroke="#223549" stroke-width="3" stroke-linecap="round"/>
+              <rect x="30" y="56" width="14" height="14" stroke="#223549" stroke-width="2.5"/>
+              <rect x="53" y="56" width="14" height="14" stroke="#223549" stroke-width="2.5"/>
+              <rect x="76" y="56" width="14" height="14" stroke="#223549" stroke-width="2.5"/>
+              <rect x="30" y="78" width="14" height="14" stroke="#223549" stroke-width="2.5"/>
+              <rect x="53" y="78" width="14" height="14" stroke="#223549" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <p class="case-eyebrow">System · Solo</p>
+            <h3 class="case-title">Event Management System</h3>
+            <p class="case-desc">End-to-end event organising, with a MySQL database and application logic written in C#.</p>
+            <div class="case-tags"><span class="case-tag">XAMPP / MySQL</span><span class="case-tag">C#</span></div>
+            <button class="case-btn" data-open="m2">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="case-card reveal" data-modal="m3">
+          <div class="case-thumb thumb-sage">
+            <svg viewBox="0 0 120 120" fill="none">
+              <path d="M50 18 Q42 26 44 38 H76 Q78 26 70 18 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M40 38 H80 L86 98 Q86 104 80 104 H40 Q34 104 34 98 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/>
+              <line x1="34" y1="60" x2="86" y2="60" stroke="#223549" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <p class="case-eyebrow">Website · Solo</p>
+            <h3 class="case-title">Skincare &amp; Beauty Website</h3>
+            <p class="case-desc">A storefront styled with TailwindCSS, running on a PHP back end with a MySQL database.</p>
+            <div class="case-tags"><span class="case-tag">PHP</span><span class="case-tag">TailwindCSS</span><span class="case-tag">XAMPP</span></div>
+            <button class="case-btn" data-open="m3">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="case-card reveal" data-modal="m4">
+          <div class="case-thumb thumb-blue">
+            <svg viewBox="0 0 120 120" fill="none">
+              <path d="M50 18 Q42 26 44 38 H76 Q78 26 70 18 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M40 38 H80 L86 98 Q86 104 80 104 H40 Q34 104 34 98 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/>
+              <circle cx="60" cy="66" r="8" stroke="#223549" stroke-width="2.5"/>
+              <path d="M60 66 V80 M60 66 L70 60" stroke="#223549" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <p class="case-eyebrow">Website · Solo</p>
+            <h3 class="case-title">Skincare &amp; Beauty — Rebuild</h3>
+            <p class="case-desc">A second pass rebuilt on Laravel with MongoDB, exploring a more structured architecture.</p>
+            <div class="case-tags"><span class="case-tag">Laravel</span><span class="case-tag">MongoDB</span><span class="case-tag">TailwindCSS</span></div>
+            <button class="case-btn" data-open="m4">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="case-card reveal" data-modal="m5">
+          <div class="case-thumb thumb-sand">
+            <svg viewBox="0 0 120 120" fill="none">
+              <rect x="38" y="14" width="44" height="92" rx="8" stroke="#223549" stroke-width="3"/>
+              <line x1="38" y1="28" x2="82" y2="28" stroke="#223549" stroke-width="2"/>
+              <line x1="38" y1="92" x2="82" y2="92" stroke="#223549" stroke-width="2"/>
+              <circle cx="60" cy="55" r="10" stroke="#223549" stroke-width="2.5"/>
+              <path d="M60 65 V78" stroke="#223549" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <p class="case-eyebrow">Mobile app · Solo</p>
+            <h3 class="case-title">Skincare &amp; Beauty App</h3>
+            <p class="case-desc">An Android companion app in Flutter, synced to the website's back end through REST APIs.</p>
+            <div class="case-tags"><span class="case-tag">Flutter</span><span class="case-tag">Dart</span><span class="case-tag">REST API</span></div>
+            <button class="case-btn" data-open="m5">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+        <article class="case-card reveal" data-modal="m6">
+          <div class="case-thumb thumb-sage">
+            <svg viewBox="0 0 120 120" fill="none">
+              <path d="M12 92 L42 42 L58 64 L74 30 L108 92 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="82" y="18" width="24" height="40" rx="5" stroke="#223549" stroke-width="2.5"/>
+              <line x1="88" y1="26" x2="100" y2="26" stroke="#223549" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <p class="case-eyebrow">Mobile app · Team of 3</p>
+            <h3 class="case-title">Camping &amp; Hiking App</h3>
+            <p class="case-desc">An Android app for outdoor activities, built in Flutter across three Agile sprints.</p>
+            <div class="case-tags"><span class="case-tag">Flutter</span><span class="case-tag">Dart</span><span class="case-tag">Agile</span></div>
+            <button class="case-btn" data-open="m6">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">How I work</p>
+        <h2>From brief to build</h2>
+        <p>Roughly how each project above came together, whether it was solo or with a team.</p>
+      </div>
+      <div class="process-grid reveal-stagger">
+        <div class="process-step reveal">
+          <p class="process-num">01</p>
+          <h3 class="process-title">Discover</h3>
+          <p class="process-desc">Understand who the product is for and what problem it actually needs to solve, before opening Figma.</p>
+        </div>
+        <div class="process-step reveal">
+          <p class="process-num">02</p>
+          <h3 class="process-title">Define</h3>
+          <p class="process-desc">Map out the core flows and the data behind them — what a user does, and what the system needs to store.</p>
+        </div>
+        <div class="process-step reveal">
+          <p class="process-num">03</p>
+          <h3 class="process-title">Design</h3>
+          <p class="process-desc">Wireframe and design the interface in Figma, then test it against the flows from the step before.</p>
+        </div>
+        <div class="process-step reveal">
+          <p class="process-num">04</p>
+          <h3 class="process-title">Develop</h3>
+          <p class="process-desc">Build it out — front end first, then wire up the back end and database, and fix what breaks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience" id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Background</p>
+        <h2>Experience &amp; education</h2>
+        <p>Where I've studied and worked, most recent first.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="t-item">
+          <div class="t-date">2024 – 2027</div>
+          <div>
+            <div class="t-title">Bachelor's of Software Engineering</div>
+            <div class="t-org">APIIT / Staffordshire University — Undergraduate</div>
+            <p class="t-desc">Currently reading for my degree, with a focus on front-end development and interface design alongside core software engineering.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2025 · 3 months</div>
+          <div>
+            <div class="t-title">UI/UX Design Intern</div>
+            <div class="t-org">Chakra Digital</div>
+            <p class="t-desc">Worked on UI/UX design in a professional studio setting — my first real look at how design decisions hold up once they meet client work and real deadlines.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2023 – 2024</div>
+          <div>
+            <div class="t-title">Foundation Programme</div>
+            <div class="t-org">APIIT / Staffordshire University</div>
+            <p class="t-desc">Completed the foundation year, building the base for the software engineering degree that followed.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2022</div>
+          <div>
+            <div class="t-title">G.C.E. Ordinary Level</div>
+            <div class="t-org">Lyceum International School, Gampaha</div>
+            <p class="t-desc">Completed secondary education.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS / REFERENCE -->
+  <section class="reference" style="background:var(--bg-alt);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">Right now</p>
+        <h2>Where things stand</h2>
+      </div>
+      <div class="status-grid reveal-stagger">
+        <div class="status-card reveal">
+          <p class="quote-mark">“</p>
+          <p class="body">Available as a professional reference for my work and conduct during my degree.</p>
+          <p class="who">Dr. Tharanga Peiris<span>Coordinator &amp; Senior Lecturer, School of Computing, APIIT</span></p>
+        </div>
+        <div class="status-card reveal">
+          <p class="quote-mark">↳</p>
+          <p class="body">Actively looking for internship and junior UI/UX or front-end roles while finishing my degree.</p>
+          <p class="who">Currently<span>Open to internships &amp; junior roles</span></p>
+        </div>
+        <div class="status-card reveal">
+          <p class="quote-mark">＋</p>
+          <p class="body">Based in Sri Lanka and comfortable working with remote teams across time zones.</p>
+          <p class="who">Location<span>Imbulgoda, Sri Lanka — open to remote</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="kicker">FAQ</p>
+        <h2>Good to know</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">What tools do you design and build with?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Figma and Canva for design, then HTML, CSS, JavaScript, TailwindCSS and PHP for the front and back end, plus Flutter and Dart for mobile.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Are you available for internships or freelance work?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — I'm currently finishing my degree and looking for internships or junior roles in UI/UX design and front-end development.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you work solo or in teams?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Both. Most projects on this site are solo builds, but the hiking app was a three-person Agile team project, and my internship at Chakra Digital was studio-based.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I get your CV?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — email me at isumikalpage@gmail.com and I'll send it straight over.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <h2>Let's build something people enjoy using.</h2>
+      <p>Looking for a UI/UX designer or front-end developer? I'd like to hear about it.</p>
+      <div class="hero-actions">
+        <a href="mailto:isumikalpage@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://isumikalpage.github.io/isumi.github.io/" target="_blank" rel="noopener" class="btn btn-ghost">View GitHub</a>
+      </div>
+      <div class="contact-list">
+        <a class="contact-row" href="mailto:isumikalpage@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          isumikalpage@gmail.com
+        </a>
+        <a class="contact-row" href="tel:+94728402173">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.4 21 3 14.6 3 6a2 2 0 0 1 1-2z"/></svg>
+          +94 72 840 2173
+        </a>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Imbulgoda, Sri Lanka
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Isumi Kalpage — Aspiring UI/UX Designer &amp; Frontend Developer</p>
+    <p>Built with care · 2026</p>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="m1">
+  <div class="modal">
+    <button class="modal-close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-hero thumb-blue">
+      <svg viewBox="0 0 120 120" fill="none"><path d="M14 20 H26 L34 74 H92" stroke="#223549" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 74 L42 40 H98 L90 74 H34Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/><circle cx="46" cy="94" r="7" stroke="#223549" stroke-width="3"/><circle cx="80" cy="94" r="7" stroke="#223549" stroke-width="3"/></svg>
+    </div>
+    <div class="modal-body">
+      <p class="case-eyebrow">Website · Solo project</p>
+      <h3>Smart Buy Grocery</h3>
+      <div class="modal-meta">
+        <div><p class="m-label">Role</p><p class="m-value">Front-end developer</p></div>
+        <div><p class="m-label">Stack</p><p class="m-value">HTML, CSS, JavaScript</p></div>
+        <div><p class="m-label">Type</p><p class="m-value">Solo project</p></div>
+      </div>
+      <p class="desc">Smart Buy is a grocery ordering website built entirely with vanilla HTML, CSS and JavaScript, with no framework involved on purpose. I wanted to get comfortable with layout, responsiveness and interactivity using only the fundamentals before reaching for a library.</p>
+      <p class="desc">That meant hand-building the product grid, cart logic and responsive breakpoints myself, which forced me to actually understand what frameworks like Tailwind or React usually handle automatically.</p>
+      <a class="modal-link" href="https://isumikalpage.github.io/isumi.github.io/" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m2">
+  <div class="modal">
+    <button class="modal-close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-hero thumb-sand">
+      <svg viewBox="0 0 120 120" fill="none"><rect x="18" y="24" width="84" height="76" rx="4" stroke="#223549" stroke-width="3"/><line x1="18" y1="44" x2="102" y2="44" stroke="#223549" stroke-width="3"/><line x1="34" y1="16" x2="34" y2="32" stroke="#223549" stroke-width="3" stroke-linecap="round"/><line x1="86" y1="16" x2="86" y2="32" stroke="#223549" stroke-width="3" stroke-linecap="round"/><rect x="30" y="56" width="14" height="14" stroke="#223549" stroke-width="2.5"/><rect x="53" y="56" width="14" height="14" stroke="#223549" stroke-width="2.5"/><rect x="76" y="56" width="14" height="14" stroke="#223549" stroke-width="2.5"/><rect x="30" y="78" width="14" height="14" stroke="#223549" stroke-width="2.5"/><rect x="53" y="78" width="14" height="14" stroke="#223549" stroke-width="2.5"/></svg>
+    </div>
+    <div class="modal-body">
+      <p class="case-eyebrow">System · Solo project</p>
+      <h3>Event Management System</h3>
+      <div class="modal-meta">
+        <div><p class="m-label">Role</p><p class="m-value">Full-stack developer</p></div>
+        <div><p class="m-label">Stack</p><p class="m-value">C#, MySQL (XAMPP)</p></div>
+        <div><p class="m-label">Type</p><p class="m-value">Solo project</p></div>
+      </div>
+      <p class="desc">A system for organising and managing events end to end — creating events, tracking attendees and handling the underlying records. The database runs on MySQL through XAMPP, with the application logic written in C#.</p>
+      <p class="desc">This one was less about the interface and more about getting the data model right: figuring out how events, attendees and bookings should relate to each other before writing a single screen.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m3">
+  <div class="modal">
+    <button class="modal-close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-hero thumb-sage">
+      <svg viewBox="0 0 120 120" fill="none"><path d="M50 18 Q42 26 44 38 H76 Q78 26 70 18 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/><path d="M40 38 H80 L86 98 Q86 104 80 104 H40 Q34 104 34 98 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/><line x1="34" y1="60" x2="86" y2="60" stroke="#223549" stroke-width="2.5"/></svg>
+    </div>
+    <div class="modal-body">
+      <p class="case-eyebrow">Website · Solo project</p>
+      <h3>Skincare &amp; Beauty Website</h3>
+      <div class="modal-meta">
+        <div><p class="m-label">Role</p><p class="m-value">Full-stack developer</p></div>
+        <div><p class="m-label">Stack</p><p class="m-value">PHP, TailwindCSS, JavaScript, XAMPP</p></div>
+        <div><p class="m-label">Type</p><p class="m-value">Solo project</p></div>
+      </div>
+      <p class="desc">A storefront for skincare and beauty products, styled with TailwindCSS on top of a PHP back end, with a MySQL database managed through XAMPP.</p>
+      <p class="desc">It was my first real attempt at pairing a utility-first CSS framework with a server-side language, which meant learning how to keep Tailwind's classes organised once PHP started generating markup dynamically.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m4">
+  <div class="modal">
+    <button class="modal-close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-hero thumb-blue">
+      <svg viewBox="0 0 120 120" fill="none"><path d="M50 18 Q42 26 44 38 H76 Q78 26 70 18 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/><path d="M40 38 H80 L86 98 Q86 104 80 104 H40 Q34 104 34 98 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/><circle cx="60" cy="66" r="8" stroke="#223549" stroke-width="2.5"/><path d="M60 66 V80 M60 66 L70 60" stroke="#223549" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </div>
+    <div class="modal-body">
+      <p class="case-eyebrow">Website · Solo project</p>
+      <h3>Skincare &amp; Beauty — Rebuild</h3>
+      <div class="modal-meta">
+        <div><p class="m-label">Role</p><p class="m-value">Full-stack developer</p></div>
+        <div><p class="m-label">Stack</p><p class="m-value">Laravel, PHP, MongoDB, TailwindCSS</p></div>
+        <div><p class="m-label">Type</p><p class="m-value">Solo project</p></div>
+      </div>
+      <p class="desc">A second pass at the skincare platform, this time rebuilt on the Laravel framework with MongoDB instead of MySQL as the database.</p>
+      <p class="desc">The goal was to see how the same product idea felt with a more structured framework underneath and a document-based data model, rather than rows and columns — a useful contrast to project three.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m5">
+  <div class="modal">
+    <button class="modal-close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-hero thumb-sand">
+      <svg viewBox="0 0 120 120" fill="none"><rect x="38" y="14" width="44" height="92" rx="8" stroke="#223549" stroke-width="3"/><line x1="38" y1="28" x2="82" y2="28" stroke="#223549" stroke-width="2"/><line x1="38" y1="92" x2="82" y2="92" stroke="#223549" stroke-width="2"/><circle cx="60" cy="55" r="10" stroke="#223549" stroke-width="2.5"/><path d="M60 65 V78" stroke="#223549" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </div>
+    <div class="modal-body">
+      <p class="case-eyebrow">Mobile app · Solo project</p>
+      <h3>Skincare &amp; Beauty — Mobile App</h3>
+      <div class="modal-meta">
+        <div><p class="m-label">Role</p><p class="m-value">Mobile developer</p></div>
+        <div><p class="m-label">Stack</p><p class="m-value">Flutter, Dart, REST API</p></div>
+        <div><p class="m-label">Platform</p><p class="m-value">Android</p></div>
+      </div>
+      <p class="desc">An Android companion app for the skincare platform, built with Flutter and Dart and connected to the existing website's back end through REST APIs.</p>
+      <p class="desc">The main challenge was keeping data in sync across web and mobile — making sure an order or profile change on one platform showed up correctly on the other, through a clean API contract.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m6">
+  <div class="modal">
+    <button class="modal-close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="modal-hero thumb-sage">
+      <svg viewBox="0 0 120 120" fill="none"><path d="M12 92 L42 42 L58 64 L74 30 L108 92 Z" stroke="#223549" stroke-width="3" stroke-linejoin="round"/><rect x="82" y="18" width="24" height="40" rx="5" stroke="#223549" stroke-width="2.5"/><line x1="88" y1="26" x2="100" y2="26" stroke="#223549" stroke-width="2"/></svg>
+    </div>
+    <div class="modal-body">
+      <p class="case-eyebrow">Mobile app · Team of 3</p>
+      <h3>Camping &amp; Hiking App</h3>
+      <div class="modal-meta">
+        <div><p class="m-label">Role</p><p class="m-value">Flutter developer</p></div>
+        <div><p class="m-label">Stack</p><p class="m-value">Flutter, Dart</p></div>
+        <div><p class="m-label">Method</p><p class="m-value">Agile, 3 sprints</p></div>
+      </div>
+      <p class="desc">An Android app for finding and organising outdoor activities, developed with a three-person team over three Agile sprints.</p>
+      <p class="desc">I worked closely with the team to keep the app functional and easy to use as scope shifted between sprints — a good early lesson in how much a plan changes once real teammates and real deadlines get involved.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Nav scroll state
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
+
+  // Mobile nav toggle
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', false);
+  }));
+
+  // Hero line-art draw-in
+  function prepDraw(svg){
+    svg.querySelectorAll('.draw').forEach(path => {
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+    });
+  }
+  document.querySelectorAll('.hero-art svg').forEach(prepDraw);
+
+  const drawIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){ entry.target.classList.add('in-view'); drawIO.unobserve(entry.target); }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.hero-art').forEach(el => drawIO.observe(el));
+
+  // Reveal on scroll
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){ entry.target.classList.add('in-view'); revealIO.unobserve(entry.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, .float-card').forEach(el => revealIO.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Case study modals
+  function openModal(id){
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-locked');
+  }
+  function closeModal(modal){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-locked');
+  }
+  document.querySelectorAll('[data-open]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.open));
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(overlay); });
+    overlay.querySelector('[data-close]').addEventListener('click', () => closeModal(overlay));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape'){
+      document.querySelectorAll('.modal-overlay.open').forEach(closeModal);
+    }
+  });
+</script>
+
+</body>
+</html>
