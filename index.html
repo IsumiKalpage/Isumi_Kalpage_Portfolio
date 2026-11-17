@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Isumi Kalpage — UI/UX Designer</title>
-<meta name="description" content="Portfolio of Isumi Kalpage, a UI/UX designer and front-end developer creating thoughtful digital experiences.">
+<meta name="description" content="Portfolio of Isumi Kalpage, a UI/UX designer creating thoughtful, user-centred digital experiences.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -112,6 +112,7 @@ img,svg{display:block;max-width:100%}
 .experience{background:var(--paper-2);border-top:1px solid var(--line)}
 .experience-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:32px}.experience-head h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:54px;margin:0}.experience-head p{font-size:12px;color:var(--muted)}
 .exp-row{display:grid;grid-template-columns:1.2fr .8fr .7fr;gap:24px;padding:24px 0;border-top:1px solid var(--line);align-items:center}.exp-role{font-family:"Instrument Serif",serif;font-size:23px}.exp-org,.exp-date{font-size:12px;color:var(--muted)}.exp-date{text-align:right}
+.exp-org a,.exp-action{color:inherit;text-decoration:none}.exp-org a:hover,.exp-action:hover{text-decoration:underline}.exp-action{display:inline-flex;align-items:center;gap:5px;justify-self:end;color:var(--ink);font-size:12px;cursor:pointer;background:none;border:0;padding:0;font-family:inherit}.education-block{margin-top:64px}.certificate-modal{position:fixed;inset:0;z-index:1200;background:rgba(18,19,17,.72);display:flex;align-items:center;justify-content:center;padding:28px;opacity:0;visibility:hidden;transition:.25s ease}.certificate-modal.open{opacity:1;visibility:visible}.certificate-dialog{width:min(1050px,96vw);max-height:92vh;background:var(--cream);border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.25);display:flex;flex-direction:column}.certificate-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.certificate-actions{display:flex;gap:10px;align-items:center}.certificate-download,.certificate-close{border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:#fff;color:var(--ink);font:inherit;font-size:12px;text-decoration:none;cursor:pointer}.certificate-download{background:var(--ink);color:#fff;border-color:var(--ink)}.certificate-view{overflow:auto;padding:18px;background:#ece8df}.certificate-view img{width:100%;display:block;border-radius:12px;background:#fff}.certificate-title{font-family:"Instrument Serif",serif;font-size:22px}.education-section{padding-top:0}
 
 /* FAQ */
 .faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px}.faq-grid h2{font-family:"Instrument Serif",serif;font-size:54px;font-weight:400;line-height:1;margin:0}.faq-item{border-top:1px solid var(--line)}.faq-item:last-child{border-bottom:1px solid var(--line)}.faq-q{width:100%;border:0;background:none;display:flex;justify-content:space-between;gap:20px;padding:22px 0;text-align:left;cursor:pointer;font-size:14px;color:var(--ink)}.faq-q span:last-child{font-size:21px;font-weight:300;transition:transform .25s ease}.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}.faq-a p{font-size:12.5px;line-height:1.7;color:var(--muted);padding:0 40px 22px 0;margin:0}.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
@@ -133,8 +134,13 @@ img,svg{display:block;max-width:100%}
   .section{padding:72px 0}.hero-tools{gap:8px}.tool{width:38px;height:38px}.work-intro h2,.section-title h2,.skills-layout h2,.experience-head h2,.faq-grid h2{font-size:42px}
   .project{min-height:620px}.metrics{gap:18px}.metric b{font-size:27px}.visual{margin-inline:-8px}.phone-row{gap:7px}.phone{width:122px;height:270px}.phone.small{width:98px;height:230px}
   .process-grid{grid-template-columns:1fr}.step,.step:not(:first-child){padding:22px 0;border-right:0;border-top:1px solid var(--line);min-height:auto}.step:first-child{border-top:0}.step h3{margin-top:18px}
-  .exp-row{grid-template-columns:1fr auto}.exp-role{grid-column:1/-1}.exp-date{text-align:right}.cta h2{font-size:54px}
+  .exp-row{grid-template-columns:1fr auto}.exp-role{grid-column:1/-1}.exp-date,.exp-action{text-align:right}.cta h2{font-size:54px}.certificate-modal{padding:12px}.certificate-bar{align-items:flex-start;gap:12px}.certificate-actions{flex-wrap:wrap;justify-content:flex-end}
 }
+
+/* Case study overlay — added without changing the homepage layout */
+.case{position:fixed;inset:0;background:#f4efe4;z-index:1000;overflow:auto;transform:translateY(102%);transition:transform .42s cubic-bezier(.2,.75,.15,1);visibility:hidden}.case.open{transform:translateY(0);visibility:visible}body.lock{overflow:hidden}.case-top{position:sticky;top:0;z-index:5;background:rgba(244,239,228,.94);backdrop-filter:blur(14px);border-bottom:1px solid #d8d1c4}.case-nav{width:min(1160px,calc(100% - 44px));height:64px;margin:auto;display:flex;align-items:center;justify-content:space-between}.case-close{border:1px solid #d8d1c4;background:#fff9;border-radius:999px;padding:9px 13px;cursor:pointer;color:#1b1e1b}.case-hero{width:min(1160px,calc(100% - 44px));margin:auto;padding:52px 0 42px}.case-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,5.6vw,78px);line-height:1;letter-spacing:-.045em;font-weight:400;margin:10px 0 20px}.case-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:44px}.case-intro>p{font-size:17px;color:#6f746d;max-width:680px}.case-facts{display:grid;gap:4px}.case-facts div{border-top:1px solid #d8d1c4;padding:10px 0;display:flex;justify-content:space-between;gap:12px;font-size:12px}.case-facts span{color:#6f746d}.case-banner{border-radius:26px;min-height:320px;display:grid;place-items:center;padding:26px;margin:24px 0 54px}.case-banner img{max-width:90%;max-height:340px;border-radius:18px;box-shadow:0 18px 50px rgba(31,38,32,.12)}.case-content{width:min(820px,calc(100% - 44px));margin:auto;padding-bottom:80px}.case-content h2{font-family:Georgia,"Times New Roman",serif;font-size:36px;line-height:1.08;font-weight:400;margin:56px 0 14px}.case-content h3{font-family:Georgia,"Times New Roman",serif;font-size:26px;font-weight:400;margin:32px 0 10px}.case-content p,.case-content li{color:#6f746d;font-size:15px}.case-content ul{padding-left:20px}.callout{padding:18px 20px;border-radius:16px;background:#e0e8dc;margin:20px 0;color:#475148}.callout.blue{background:#dce7f0}.visual{margin:24px 0;border-radius:20px;background:white;padding:14px;box-shadow:0 12px 38px rgba(31,38,32,.07)}.visual img{width:100%;display:block;border-radius:12px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}.quick-card{background:#ffffff80;border:1px solid #d8d1c4;border-radius:18px;padding:22px;margin-top:20px}
+@media(max-width:760px){.case-intro{grid-template-columns:1fr;gap:18px}.case-title{font-size:44px}.case-banner{min-height:220px;padding:18px}.case-banner img{max-height:260px}.two-col{grid-template-columns:1fr}.case-content h2{font-size:32px}}
+
 </style>
 </head>
 <body>
@@ -157,23 +163,23 @@ img,svg{display:block;max-width:100%}
 <main id="top">
 <section class="hero inner">
   <div class="avatar">IK</div>
-  <div class="hero-badge">✦ UI/UX Designer · Front-End Developer</div>
+  <div class="hero-badge">✦ UI/UX Designer · Product Design</div>
   <h1 class="reveal">Your design partner for <em>thoughtful digital experiences.</em></h1>
-  <p class="hero-sub reveal">I’m Isumi Kalpage, a Software Engineering undergraduate designing clean, usable interfaces and turning them into responsive digital products.</p>
+  <p class="hero-sub reveal">I’m Isumi Kalpage, a UI/UX designer focused on creating intuitive, accessible and visually thoughtful digital experiences through user-centred design.</p>
   <div class="hero-actions reveal">
     <a class="btn btn-dark" href="#work">View my work ↘</a>
     <a class="btn btn-light" href="mailto:isumikalpage@gmail.com">Get in touch</a>
   </div>
   <div class="hero-tools reveal">
-    <div class="tool">Fi</div><div class="tool">Fg</div><div class="tool">Ca</div><div class="tool">HTML</div><div class="tool">CSS</div><div class="tool">JS</div><div class="tool">Fl</div><div class="tool">PHP</div>
-    <div class="tool-note">Tools I use to move from idea → interface → working product</div>
+    <div class="tool">Fi</div><div class="tool">Ca</div><div class="tool">Ux</div>
+    <div class="tool-note">Design tools I use to research, explore and shape user experiences</div>
   </div>
 </section>
 
 <section class="work inner" id="work">
   <div class="work-intro reveal">
     <div><div class="eyebrow">Selected work</div><h2>Projects I’ve shaped.</h2></div>
-    <p>A selection of interface, web and mobile projects built through university work and hands-on product exploration.</p>
+    <p>A selection of user-centred mobile and web experiences shaped through research, interaction design and thoughtful visual decisions.</p>
   </div>
   <div class="stack">
     <article class="project reveal">
@@ -181,8 +187,8 @@ img,svg{display:block;max-width:100%}
         <div class="project-num">01 · Mobile Product Design</div>
         <h3>Camping & Hiking Companion App</h3>
         <p class="project-desc">A mobile experience for discovering outdoor locations, planning trips and organising hiking activities with a simple, task-focused interface.</p>
-        <div class="project-tags"><span>UI/UX</span><span>Flutter</span><span>Agile</span><span>Team project</span></div>
-        <a class="project-link" href="#contact">View case study ↗</a>
+        <div class="project-tags"><span>UX Research</span><span>Mobile UI</span><span>Prototyping</span><span>Team project</span></div>
+        <a class="project-link case-trigger" href="#case-wildsteps" data-case="case-wildsteps">View case study ↗</a>
         <div class="metrics"><div class="metric"><b>3</b><span>Agile sprints</span></div><div class="metric"><b>3</b><span>Team members</span></div></div>
       </div>
       <div class="visual">
@@ -199,8 +205,8 @@ img,svg{display:block;max-width:100%}
         <div class="project-num">02 · E-commerce Experience</div>
         <h3>Skincare & Beauty Web Platform</h3>
         <p class="project-desc">A clean e-commerce storefront designed around product discovery, understandable categories and a visually calm shopping journey.</p>
-        <div class="project-tags"><span>UI Design</span><span>TailwindCSS</span><span>PHP</span><span>MySQL</span></div>
-        <a class="project-link" href="#contact">View case study ↗</a>
+        <div class="project-tags"><span>UX/UI Design</span><span>E-commerce</span><span>Responsive UX</span><span>Solo project</span></div>
+        <a class="project-link case-trigger" href="#case-veloura" data-case="case-veloura">View case study ↗</a>
         <div class="metrics"><div class="metric"><b>Web</b><span>Responsive platform</span></div><div class="metric"><b>01</b><span>Solo project</span></div></div>
       </div>
       <div class="visual"><div class="browser"><div class="browser-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div class="browser-content"><div class="ui-nav"></div><div class="ui-hero"></div><div class="ui-lines"><i></i><i></i><i></i></div></div></div></div>
@@ -210,8 +216,8 @@ img,svg{display:block;max-width:100%}
       <div>
         <div class="project-num">03 · Mobile Commerce</div>
         <h3>Skincare & Beauty Mobile App</h3>
-        <p class="project-desc">An Android companion experience connected to the existing web platform through REST APIs, keeping products, accounts and orders consistent across devices.</p>
-        <div class="project-tags"><span>Mobile UX</span><span>Flutter</span><span>Dart</span><span>REST API</span></div>
+        <p class="project-desc">A mobile companion for browsing skincare products, managing accounts and following orders, with a consistent experience across web and mobile.</p>
+        <div class="project-tags"><span>Mobile UX</span><span>UI Design</span><span>User Flows</span><span>Android</span></div>
         <a class="project-link" href="#contact">View case study ↗</a>
         <div class="metrics"><div class="metric"><b>API</b><span>Connected experience</span></div><div class="metric"><b>01</b><span>Android app</span></div></div>
       </div>
@@ -221,11 +227,11 @@ img,svg{display:block;max-width:100%}
     <article class="project reveal">
       <div>
         <div class="project-num">04 · Product Rebuild</div>
-        <h3>Skincare Platform — Laravel Rebuild</h3>
-        <p class="project-desc">A second iteration of the skincare platform exploring a more structured framework and document-based data model while retaining a clear shopping experience.</p>
-        <div class="project-tags"><span>Laravel</span><span>MongoDB</span><span>TailwindCSS</span><span>Full-stack</span></div>
+        <h3>Skincare & Beauty Platform — Refined Experience</h3>
+        <p class="project-desc">A refined iteration of the skincare shopping experience, with clearer product discovery, consistent interface patterns and a more considered customer journey.</p>
+        <div class="project-tags"><span>UX Iteration</span><span>UI Design</span><span>E-commerce</span><span>Responsive UX</span></div>
         <a class="project-link" href="#contact">View case study ↗</a>
-        <div class="metrics"><div class="metric"><b>V2</b><span>Platform iteration</span></div><div class="metric"><b>NoSQL</b><span>MongoDB</span></div></div>
+        <div class="metrics"><div class="metric"><b>V2</b><span>Platform iteration</span></div><div class="metric"><b>UX</b><span>Shopping journey</span></div></div>
       </div>
       <div class="visual"><div class="browser"><div class="browser-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div class="browser-content"><div class="ui-nav"></div><div class="ui-hero" style="background:#4c3e35"></div><div class="ui-lines"><i></i><i></i><i></i></div></div></div></div>
     </article>
@@ -234,10 +240,10 @@ img,svg{display:block;max-width:100%}
       <div>
         <div class="project-num">05 · Information System</div>
         <h3>Event Management System</h3>
-        <p class="project-desc">A database-backed system for creating events, tracking attendees and managing records, with emphasis on clear relationships between the underlying data and interface.</p>
-        <div class="project-tags"><span>C#</span><span>MySQL</span><span>XAMPP</span><span>System design</span></div>
+        <p class="project-desc">An event management experience for creating events, tracking attendees and managing records, with an emphasis on clear information structure and straightforward task flows.</p>
+        <div class="project-tags"><span>Information Architecture</span><span>User Flows</span><span>Interface Design</span><span>System Design</span></div>
         <a class="project-link" href="#contact">View case study ↗</a>
-        <div class="metrics"><div class="metric"><b>DB</b><span>Relational model</span></div><div class="metric"><b>01</b><span>Solo project</span></div></div>
+        <div class="metrics"><div class="metric"><b>IA</b><span>Clear information structure</span></div><div class="metric"><b>01</b><span>Solo project</span></div></div>
       </div>
       <div class="visual"><div class="browser"><div class="browser-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div class="browser-content"><div class="ui-nav"></div><div class="ui-hero" style="background:#523e42"></div><div class="ui-lines"><i></i><i></i><i></i></div></div></div></div>
     </article>
@@ -247,8 +253,8 @@ img,svg{display:block;max-width:100%}
         <div class="project-num">06 · Web Commerce</div>
         <h3>Smart Buy Grocery Website</h3>
         <p class="project-desc">A team-built grocery website focused on straightforward browsing, cart interactions and a familiar purchase flow for everyday products.</p>
-        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Team project</span></div>
-        <a class="project-link" href="#contact">View case study ↗</a>
+        <div class="project-tags"><span>UX/UI Design</span><span>E-commerce</span><span>Interaction Design</span><span>Team project</span></div>
+        <a class="project-link case-trigger" href="#case-smartbuy" data-case="case-smartbuy">View case study ↗</a>
         <div class="metrics"><div class="metric"><b>Web</b><span>E-commerce</span></div><div class="metric"><b>UX</b><span>Simple purchase flow</span></div></div>
       </div>
       <div class="visual"><div class="browser"><div class="browser-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div class="browser-content"><div class="ui-nav"></div><div class="ui-hero" style="background:#384729"></div><div class="ui-lines"><i></i><i></i><i></i></div></div></div></div>
@@ -257,44 +263,67 @@ img,svg{display:block;max-width:100%}
 </section>
 
 <section class="process section" id="process"><div class="inner">
-  <div class="section-title reveal"><h2>My process</h2><p>I like keeping the design process practical: understand the problem first, reduce ambiguity, test the direction, and only then polish the interface or move it into code.</p></div>
+  <div class="section-title reveal"><h2>My process</h2><p>I keep my design process practical and user-centred: understand the problem, define the right experience, explore possible solutions, then prototype and refine the interface.</p></div>
   <div class="process-grid reveal">
     <div class="step"><div class="step-num">01</div><h3>Discover</h3><p>Understand the brief, user needs, constraints and what success should look like.</p></div>
     <div class="step"><div class="step-num">02</div><h3>Define</h3><p>Organise flows, prioritise information and turn research into a focused product direction.</p></div>
-    <div class="step"><div class="step-num">03</div><h3>Design</h3><p>Move from wireframes into visual systems, interaction details and responsive screens.</p></div>
-    <div class="step"><div class="step-num">04</div><h3>Deliver</h3><p>Prototype, test, refine and collaborate with development—or build the front end myself.</p></div>
+    <div class="step"><div class="step-num">03</div><h3>Design</h3><p>Turn the chosen direction into clear layouts, visual systems, interaction details and responsive screens.</p></div>
+    <div class="step"><div class="step-num">04</div><h3>Refine</h3><p>Prototype key journeys, gather feedback, improve usability and prepare clear design handoff.</p></div>
   </div>
 </div></section>
 
 <section class="section" id="skills"><div class="inner skills-layout reveal">
   <div><div class="eyebrow">Capabilities</div><h2>Skills & tools</h2></div>
-  <div class="skill-cloud"><span>UX Research</span><span>User Flows</span><span>Wireframing</span><span>UI Design</span><span>Prototyping</span><span>Interaction Design</span><span>Responsive Design</span><span>Figma</span><span>Canva</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TailwindCSS</span><span>Flutter</span><span>PHP</span><span>MongoDB</span><span>MySQL</span></div>
+  <div class="skill-cloud"><span>User Research</span><span>Empathy Mapping</span><span>User Personas</span><span>User Flows</span><span>Information Architecture</span><span>Wireframing</span><span>UI Design</span><span>Visual Hierarchy</span><span>Interaction Design</span><span>Prototyping</span><span>Responsive Design</span><span>Figma</span><span>Canva</span><span>Uxcel</span></div>
 </div></section>
 
 <section class="experience section" id="experience"><div class="inner">
-  <div class="experience-head reveal"><h2>Experience</h2><p>Design, study and hands-on building.</p></div>
-  <div class="exp-row reveal"><div class="exp-role">UI/UX Design Intern</div><div class="exp-org">Chakra Digital</div><div class="exp-date">3 months</div></div>
-  <div class="exp-row reveal"><div class="exp-role">B.Eng Software Engineering</div><div class="exp-org">APIIT / Staffordshire University</div><div class="exp-date">Undergraduate</div></div>
-  <div class="exp-row reveal"><div class="exp-role">UX/UI Designer Career Path</div><div class="exp-org">Uxcel</div><div class="exp-date">Completed</div></div>
+  <div class="experience-head reveal"><h2>Experience</h2><p>Professional experience and continued growth in UX/UI design.</p></div>
+  <div class="exp-row reveal"><div class="exp-role">UI/UX Design Intern</div><div class="exp-org"><a href="https://www.linkedin.com/company/wearechakradigital/posts/?feedView=all" target="_blank" rel="noopener">Chakra Digital ↗</a></div><div class="exp-date">3 months</div></div>
+  <div class="exp-row reveal"><div class="exp-role">UX/UI Designer Career Path</div><div class="exp-org">Uxcel</div><button class="exp-action" id="viewCertificate" type="button">View certification ↗</button></div>
+</div></section>
+
+<section class="section education-section" id="education"><div class="inner">
+  <div class="experience-head reveal"><h2>Education</h2><p>My academic journey so far.</p></div>
+  <div class="exp-row reveal"><div class="exp-role">G.C.E O/L’s</div><div class="exp-org">Lyceum International School Gampaha</div><div class="exp-date">2022</div></div>
+  <div class="exp-row reveal"><div class="exp-role">Foundation</div><div class="exp-org">APIIT / Staffordshire University</div><div class="exp-date">2023 – 2024</div></div>
+  <div class="exp-row reveal"><div class="exp-role">Bachelor’s of Software Engineering</div><div class="exp-org">APIIT / Staffordshire University</div><div class="exp-date">2024 – 2027 · Undergraduate</div></div>
 </div></section>
 
 <section class="section" id="faq"><div class="inner faq-grid reveal">
   <div><div class="eyebrow">A little more</div><h2>Frequently asked questions</h2></div>
   <div>
-    <div class="faq-item"><button class="faq-q"><span>What kind of roles are you looking for?</span><span>+</span></button><div class="faq-a"><p>UI/UX design, product design and front-end opportunities where I can contribute to both how a product feels and how it is implemented.</p></div></div>
-    <div class="faq-item"><button class="faq-q"><span>What tools do you use most?</span><span>+</span></button><div class="faq-a"><p>Figma is my main design tool. For implementation I work with HTML, CSS, JavaScript, TailwindCSS, Flutter and other technologies depending on the project.</p></div></div>
-    <div class="faq-item"><button class="faq-q"><span>Can you work from design through development?</span><span>+</span></button><div class="faq-a"><p>Yes. My software engineering background helps me design with implementation in mind, and I enjoy taking selected concepts into responsive front-end builds.</p></div></div>
+    <div class="faq-item"><button class="faq-q"><span>What kind of roles are you looking for?</span><span>+</span></button><div class="faq-a"><p>I’m focused on UI/UX design, UX design and product design opportunities where I can create clear, useful and engaging digital experiences.</p></div></div>
+    <div class="faq-item"><button class="faq-q"><span>What tools do you use most?</span><span>+</span></button><div class="faq-a"><p>Figma is my main design tool, supported by FigJam for exploring ideas and Canva for visual communication. I also use Uxcel to keep developing my design knowledge.</p></div></div>
+    <div class="faq-item"><button class="faq-q"><span>How do you approach a design challenge?</span><span>+</span></button><div class="faq-a"><p>I start by understanding the users and the problem, then organise the information, map key journeys, explore wireframes and refine the interface through prototyping.</p></div></div>
     <div class="faq-item"><button class="faq-q"><span>Can I get your CV?</span><span>+</span></button><div class="faq-a"><p>Absolutely. Email me and I’ll send the latest UI/UX-focused version of my CV.</p></div></div>
   </div>
 </div></section>
 
 <section class="cta" id="contact"><div class="inner cta-grid reveal">
   <h2>Have an idea? <em>Let’s make it useful.</em></h2>
-  <div class="cta-side"><p>I’m open to UI/UX opportunities, internships, collaborative projects and front-end work. Tell me what you’re building.</p><div class="hero-actions" style="justify-content:flex-start;margin:0"><a class="btn btn-dark" href="mailto:isumikalpage@gmail.com">isumikalpage@gmail.com ↗</a><a class="btn btn-light" href="#top">Back to top ↑</a></div></div>
+  <div class="cta-side"><p>I’m open to UI/UX design opportunities, internships and collaborative product design projects. Let’s create something thoughtful and useful.</p><div class="hero-actions" style="justify-content:flex-start;margin:0"><a class="btn btn-dark" href="mailto:isumikalpage@gmail.com">isumikalpage@gmail.com ↗</a><a class="btn btn-light" href="#top">Back to top ↑</a></div></div>
 </div></section>
 </main>
-<footer class="footer"><div class="inner"><span>© 2026 Isumi Kalpage</span><span>UI/UX Designer · Front-End Developer · Sri Lanka</span><a href="mailto:isumikalpage@gmail.com">Email</a></div></footer>
+<footer class="footer"><div class="inner"><span>© 2026 Isumi Kalpage</span><span>UI/UX Designer · Sri Lanka</span><a href="mailto:isumikalpage@gmail.com">Email</a></div></footer>
 </div>
+
+<div class="certificate-modal" id="certificateModal" aria-hidden="true">
+  <div class="certificate-dialog" role="dialog" aria-modal="true" aria-labelledby="certificateTitle">
+    <div class="certificate-bar">
+      <div class="certificate-title" id="certificateTitle">Uxcel UX/UI Designer Certification</div>
+      <div class="certificate-actions">
+        <a class="certificate-download" href="assets/uxcel-certificate.png" download="Isumi-Kalpage-Uxcel-UX-UI-Designer-Certificate.png">Download certificate ↓</a>
+        <button class="certificate-close" id="closeCertificate" type="button">Close ×</button>
+      </div>
+    </div>
+    <div class="certificate-view"><img src="assets/uxcel-certificate.png" alt="Uxcel UX/UI Designer certificate issued to Isumi Lisara Kalpage"></div>
+  </div>
+</div>
+
+<section class="case" id="case-wildsteps" aria-hidden="true"><div class="case-top"><div class="container case-nav"><strong>WildSteps case study</strong><button class="case-close">← Back to portfolio</button></div></div><div class="container case-hero"><div class="eyebrow">UI/UX · Mobile App · Android</div><h1 class="case-title">WildSteps — Camping & Hiking App</h1><div class="case-intro"><p>A comprehensive mobile experience for camping and hiking in Sri Lanka, bringing location discovery, gear rentals, safety tools and community features into one place.</p><div class="case-facts"><div><span>Timeline</span><strong>Feb–Oct 2025</strong></div><div><span>Team</span><strong>3 members</strong></div><div><span>Design tools</span><strong>Figma · Canva</strong></div><div><span>Method</span><strong>Agile · 3 sprints</strong></div></div></div><div class="case-banner" style="background:var(--mint)"><img src="assets/wildsteps-hero.jpg" alt="WildSteps screens"></div></div><div class="case-content"><h2>At a glance</h2><p>Our three-person team completed the project over roughly eight months. My design focus included understanding the needs of outdoor enthusiasts, exploring user journeys, prioritising key features and shaping the interface through research, sketches and prototyping.</p><h2>Problem</h2><p>Camping and hiking information in Sri Lanka is fragmented across multiple sources. Users have to piece together locations, gear rentals, safety guidance and weather updates, making trip planning inefficient and confusing.</p><div class="callout">The lack of structured guidance especially affects beginners and reduces overall engagement in outdoor activities.</div><h2>Solution</h2><p>WildSteps centralises core camping and hiking needs in one mobile application: safe location discovery, rental gear, trip planning, real-time weather and safety updates, emergency support and community reviews.</p><div class="callout blue">The integrated platform simplifies trip planning, improves safety and creates a more connected outdoor experience.</div><div class="visual"><img src="assets/wildsteps-features.jpg" alt="Trip planning and safety feature cards"></div><h2>Process</h2><p>We followed an iterative design process so each step—from research to prototyping—contributed directly to a more informed and user-centred solution.</p><h3>User research</h3><p>We reviewed existing camping and hiking apps to identify gaps in current features and user experience. Those findings helped us define a more integrated solution tailored to Sri Lankan outdoor enthusiasts.</p><div class="two-col"><div class="visual"><img src="assets/wildsteps-empathy.jpg" alt="WildSteps empathy map"></div><div class="visual"><img src="assets/wildsteps-moscow.jpg" alt="MoSCoW prioritisation"></div></div><p>The empathy map helped surface user behaviours, needs and pain points, while the MoSCoW technique helped prioritise the features that mattered most to the user experience.</p><div class="visual"><img src="assets/wildsteps-personas.jpg" alt="WildSteps user personas"></div><h3>Sketches</h3><p>Early sketches explored multiple ways of organising key tasks before committing to polished UI. This made it easier to compare layouts quickly and keep the team aligned around the core flows.</p><div class="visual"><img src="assets/wildsteps-sketches.jpg" alt="WildSteps paper sketches"></div><h3>Prototyping</h3><p>We then moved the approved flows into an interactive prototype, refining hierarchy, navigation and interaction patterns before finalising the experience.</p><div class="visual"><img src="assets/wildsteps-prototype.jpg" alt="WildSteps prototype board"></div><h2>Outcome</h2><p>The final concept brings location discovery, trip planning, safety support, rental management and community functionality into one Android experience. The project strengthened my ability to translate user needs into prioritised features and clear interface experiences within a collaborative team.</p><h2>What I learned</h2><p>This project showed me how much stronger a product becomes when research, prioritisation and design decisions stay connected. I also developed my confidence in user-centred thinking, prototyping, collaborative decision-making and translating user needs into practical features.</p></div></section>
+<section class="case" id="case-veloura" aria-hidden="true"><div class="case-top"><div class="container case-nav"><strong>Veloura case study</strong><button class="case-close">← Back to portfolio</button></div></div><div class="container case-hero"><div class="eyebrow">UI/UX · Website · Solo</div><h1 class="case-title">Veloura — Skincare & Beauty Website</h1><div class="case-intro"><p>An e-commerce experience for skincare, haircare and cosmetics, designed around clear product discovery, responsive browsing and a structured shopping flow.</p><div class="case-facts"><div><span>Focus</span><strong>UX/UI Design</strong></div><div><span>Design work</span><strong>Wireframes · UI mockups</strong></div><div><span>Experience</span><strong>Responsive shopping journey</strong></div><div><span>Project</span><strong>Individual work</strong></div></div></div><div class="case-banner" style="background:var(--peach)"><img src="assets/veloura-hero.jpg" alt="Veloura interface"></div></div><div class="case-content"><h2>Business scenario</h2><p>Veloura operates as an online marketplace offering skincare, haircare and cosmetic products. The experience needed to support customers moving from discovery to comparison and purchase with as little friction as possible.</p><h2>Business needs</h2><ul><li>Mobile, tablet and desktop-friendly navigation.</li><li>Adaptable database structure for inventory and order management.</li><li>High visual clarity for browsing and product information.</li><li>Personalised discounts and product suggestions for loyal customers.</li></ul><h2>Core offering</h2><p>The platform brings together skincare, haircare, makeup, conditioners, gifts and related beauty products with clear product categorisation and search.</p><h2>Key features</h2><div class="quick-card"><h3>Functional</h3><p>Shopping cart and checkout, order placement and confirmation, product browsing/search, categorised browsing and filters.</p></div><div class="quick-card"><h3>Non-functional</h3><p>Usable navigation, quick page performance, responsive layouts and a consistent cross-device experience.</p></div><h2>Design process</h2><h3>1. Structure & wireframing</h3><p>I began by organising the main shopping sections and mapping how users would move between product discovery, product details, the cart and checkout.</p><h3>2. Interface design</h3><p>I explored page layouts and UI mockups with a focus on clear product categories, readable product information, consistent components and a calm visual hierarchy.</p><h3>3. Responsive experience</h3><p>I considered how navigation, product cards and key shopping actions should adapt across desktop, tablet and mobile screens.</p><h2>What I learned</h2><p>This project strengthened my understanding of e-commerce UX, especially how information architecture, product categorisation, visual hierarchy and a clear shopping journey work together.</p></div></section>
+<section class="case" id="case-smartbuy" aria-hidden="true"><div class="case-top"><div class="container case-nav"><strong>Smart Buy case study</strong><button class="case-close">← Back to portfolio</button></div></div><div class="container case-hero"><div class="eyebrow">Website · Solo Project</div><h1 class="case-title">Smart Buy Grocery</h1><div class="case-intro"><p>A grocery shopping experience planned around straightforward product discovery, clear categories, accessible product information and a familiar purchase journey.</p><div class="case-facts"><div><span>Focus</span><strong>UX/UI Design</strong></div><div><span>Experience</span><strong>Grocery e-commerce</strong></div><div><span>Type</span><strong>Individual project</strong></div></div></div><div class="case-banner" style="background:var(--sky)"><img src="assets/smartbuy-hero.jpg" alt="Smart Buy grocery website"></div></div><div class="case-content"><h2>Business scenario</h2><p>Smart Buy Grocery is an online grocery store where users can browse and purchase everyday products such as fruits, vegetables, dairy and household essentials. The experience was designed to keep browsing simple while working well across phones, tablets and desktop screens.</p><h2>Business needs</h2><ul><li>Make product categories easy to scan and understand.</li><li>Keep product cards and product information clear and consistent.</li><li>Create simple navigation between browsing, cart and checkout.</li><li>Support a comfortable shopping experience across screen sizes.</li></ul><h2>What I learned</h2><ul><li>Practised organising product information into clear, scannable layouts.</li><li>Explored visual hierarchy, spacing and consistency across shopping components.</li><li>Considered how key interactions should behave across the shopping journey.</li><li>Learned how responsive decisions influence usability on different screen sizes.</li></ul><h2>Challenges</h2><p>The main challenges were creating a cohesive visual theme, keeping layouts responsive at different widths and maintaining consistency as the experience grew.</p><h2>How I improved them</h2><p>I refined the colour system, simplified spacing rules, reviewed layouts at different screen sizes and kept iterating through small usability improvements.</p><h2>Design process</h2><h3>Information architecture</h3><p>I organised the main product categories and considered how shoppers could move through the store without unnecessary steps.</p><h3>Wireframing & layout</h3><p>I explored the placement of navigation, product grids, product information and shopping actions to create a familiar and easy-to-follow experience.</p><h3>Iteration</h3><p>I refined the hierarchy, spacing and responsive layouts to keep the interface consistent and comfortable to use across devices.</p><p><a class="btn primary" href="https://isumikalpage.github.io/isumi.github.io/" target="_blank" rel="noopener">View live project ↗</a></p></div></section>
 <script>
 const menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
 menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
@@ -302,6 +331,38 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classLis
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.querySelectorAll('.faq-item').forEach(item=>{const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');q.addEventListener('click',()=>{const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null});if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}})});
+
+// Uxcel certificate popup.
+const certificateModal=document.getElementById('certificateModal');
+const viewCertificate=document.getElementById('viewCertificate');
+const closeCertificate=document.getElementById('closeCertificate');
+const openCertificate=()=>{certificateModal.classList.add('open');certificateModal.setAttribute('aria-hidden','false');document.body.classList.add('lock')};
+const hideCertificate=()=>{certificateModal.classList.remove('open');certificateModal.setAttribute('aria-hidden','true');document.body.classList.remove('lock')};
+viewCertificate?.addEventListener('click',openCertificate);
+closeCertificate?.addEventListener('click',hideCertificate);
+certificateModal?.addEventListener('click',e=>{if(e.target===certificateModal)hideCertificate()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&certificateModal?.classList.contains('open'))hideCertificate()});
+
+// Detailed case studies for the three documented projects only.
+const openCase = id => {
+  const panel = document.getElementById(id);
+  if(!panel) return;
+  panel.classList.add('open');
+  panel.setAttribute('aria-hidden','false');
+  document.body.classList.add('lock');
+  panel.scrollTop = 0;
+};
+const closeCase = panel => {
+  panel.classList.remove('open');
+  panel.setAttribute('aria-hidden','true');
+  document.body.classList.remove('lock');
+};
+document.querySelectorAll('.case-trigger').forEach(link=>link.addEventListener('click',e=>{
+  e.preventDefault(); openCase(link.dataset.case);
+}));
+document.querySelectorAll('.case-close').forEach(btn=>btn.addEventListener('click',()=>closeCase(btn.closest('.case'))));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const panel=document.querySelector('.case.open');if(panel) closeCase(panel)}});
+
 </script>
 </body>
 </html>
